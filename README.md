@@ -1,3 +1,3 @@
 # propagandice
 
-![screen01](propagandice/img/001.jpg)
+[screen01](img/001.jpg)
