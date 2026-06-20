@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
+<title>PROPAGAN-DICE GB</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%239a9eac'/><rect x='4' y='3' width='24' height='18' rx='2' fill='%232a2e3c'/><rect x='6' y='5' width='20' height='14' rx='1' fill='%239bbc0f'/><text x='16' y='14' text-anchor='middle' font-size='9' fill='%230f380f' font-family='monospace' font-weight='bold'>&#x1F3B2;</text><rect x='6' y='23' width='8' height='6' rx='1' fill='%233a3c4a'/><rect x='9' y='23' width='2' height='6' fill='%232a2c3a'/><rect x='6' y='26' width='8' height='2' fill='%232a2c3a'/><circle cx='22' cy='25' r='3' fill='%237a1a80'/><circle cx='28' cy='27' r='2.5' fill='%237a1a80'/></svg>">
+
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PROPAGAN-DICE">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;image-rendering:pixelated}
+body{background:#1a1a2e;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;font-family:'Press Start 2P',monospace;padding:env(safe-area-inset-top,12px) env(safe-area-inset-right,12px) env(safe-area-inset-bottom,12px) env(safe-area-inset-left,12px);overflow:hidden}
+
+/* ── GB Shell ── */
+.gb-shell{
+  background:linear-gradient(160deg,#b8bcc8 0%,#9a9eac 40%,#8a8e9c 100%);
+  border-radius:14px 14px 36% 36% / 14px 14px 22px 22px;
+  padding:12px 14px 24px;
+  width:300px;
+  box-shadow:
+    inset 0 2px 0 #d0d4e0,
+    inset 0 -4px 0 #6a6e7c,
+    inset -3px 0 0 #7a7e8c,
+    inset 3px 0 0 #7a7e8c,
+    0 12px 40px #00000090;
+  position:relative;
+  user-select:none;
+  transform-origin:top center;
+  overflow:hidden;
+}
+.gb-shell::after{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.03) 3px,rgba(255,255,255,0.03) 4px);
+  border-radius:inherit;pointer-events:none;
+}
+
+/* ── Label ── */
+.gb-label{
+  text-align:center;font-size:5px;letter-spacing:4px;color:#5a5e6c;
+  text-transform:uppercase;margin-bottom:10px;font-family:'Press Start 2P',monospace;
+}
+.gb-label span{color:#7a3090;font-size:6px}
+
+/* ── Screen bezel ── */
+.gb-bezel{
+  background:#2a2e3c;border-radius:8px 8px 4px 4px;
+  padding:8px 8px 6px;
+  box-shadow:inset 0 0 0 2px #1a1e2c, inset 0 0 10px #00000080;
+  margin-bottom:10px;
+  position:relative;
+}
+.gb-bezel::before{
+  content:'◉ PROPAGAN-DICE';
+  display:block;font-size:4px;color:#4a4e5c;letter-spacing:2px;
+  margin-bottom:6px;font-family:'Press Start 2P',monospace;
+  text-align:center;
+}
+.gb-power-led{
+  width:5px;height:5px;border-radius:50%;background:#ff2020;
+  box-shadow:0 0 4px #ff2020;position:absolute;top:8px;left:10px;
+}
+.gb-power-led.on{background:#00ff00;box-shadow:0 0 6px #00ff00}
+
+/* ── Screen ── */
+#gb-screen{
+  width:100%;
+  height:240px;
+  background:#9bbc0f;
+  overflow:hidden;position:relative;
+  border:2px solid #0f380f;
+  display:flex;flex-direction:column;
+  font-family:'Press Start 2P',monospace;
+  font-size:6px;
+  color:#0f380f;
+  cursor:default;
+}
+
+/* ── Scanlines overlay ── */
+#gb-screen::after{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.06) 2px,rgba(0,0,0,0.06) 4px);
+  pointer-events:none;z-index:100;
+}
+
+/* ── Speaker dots ── */
+.gb-speaker{
+  display:grid;grid-template-columns:repeat(3,6px);grid-template-rows:repeat(4,6px);gap:3px;
+  margin-right:4px;
+}
+.gb-speaker-dot{width:5px;height:5px;border-radius:50%;background:#7a7e8c;box-shadow:inset 0 1px 0 #6a6e7c}
+
+/* ── D-pad ── */
+.gb-dpad-wrap{display:flex;justify-content:space-between;align-items:center;gap:0;margin-top:6px;padding:0 2px}
+.gb-dpad{position:relative;width:64px;height:64px;flex-shrink:0}
+.gb-dpad-h,.gb-dpad-v{position:absolute;background:#3a3c4a;border-radius:2px}
+.gb-dpad-h{left:0;right:0;top:50%;transform:translateY(-50%);height:22px}
+.gb-dpad-v{top:0;bottom:0;left:50%;transform:translateX(-50%);width:22px}
+.gb-dpad-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22px;height:22px;background:#2a2c3a;border-radius:1px}
+.gb-dpad-arrow{position:absolute;font-size:8px;color:#6a6e7c;pointer-events:none;line-height:1}
+.gb-dpad-arrow.up{top:2px;left:50%;transform:translateX(-50%)}
+.gb-dpad-arrow.down{bottom:2px;left:50%;transform:translateX(-50%)}
+.gb-dpad-arrow.left{left:2px;top:50%;transform:translateY(-50%)}
+.gb-dpad-arrow.right{right:2px;top:50%;transform:translateY(-50%)}
+.gb-dpad-btn{position:absolute;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center}
+.gb-dpad-btn:active{opacity:0.6}
+.gb-dpad-btn.up{left:0;right:0;top:0;height:22px}
+.gb-dpad-btn.down{left:0;right:0;bottom:0;height:22px}
+.gb-dpad-btn.left{top:0;bottom:0;left:0;width:22px}
+.gb-dpad-btn.right{top:0;bottom:0;right:0;width:22px}
+
+/* ── A/B buttons ── */
+.gb-ab{display:flex;align-items:center;gap:8px;transform:rotate(-20deg);margin-right:4px}
+.gb-btn{
+  border:none;border-radius:50%;cursor:pointer;
+  font-family:'Press Start 2P',monospace;font-size:5px;color:#fff;font-weight:700;
+  transition:transform .07s,box-shadow .07s;
+  outline:none;
+}
+.gb-btn:active,.gb-btn.pressed{transform:scale(0.9);box-shadow:none!important}
+.gb-btn-a{
+  width:32px;height:32px;
+  background:radial-gradient(circle at 35% 35%,#c060b0,#7a1a80);
+  box-shadow:0 4px 0 #4a0a50,0 5px 0 #2a0030;
+}
+.gb-btn-b{
+  width:28px;height:28px;
+  background:radial-gradient(circle at 35% 35%,#c060b0,#7a1a80);
+  box-shadow:0 3px 0 #4a0a50,0 4px 0 #2a0030;
+}
+.gb-btn-label{font-size:5px;color:#5a5e6c;text-align:center;margin-top:3px;font-family:'Press Start 2P',monospace}
+
+/* ── Start/Select ── */
+.gb-mid{display:flex;justify-content:center;gap:16px;margin:10px 0 0}
+.gb-sys-btn{
+  border:none;cursor:pointer;
+  background:#6a6e7c;
+  border-radius:10px;
+  width:36px;height:10px;
+  transform:rotate(-20deg);
+  box-shadow:0 2px 0 #3a3e4c;
+  font-family:'Press Start 2P',monospace;font-size:4px;color:#9a9eac;
+  display:flex;align-items:center;justify-content:center;
+  outline:none;transition:transform .07s;
+}
+.gb-sys-btn:active{transform:rotate(-20deg) scale(0.9)}
+.gb-sys-label{font-size:4px;color:#5a5e6c;text-align:center;margin-top:5px;font-family:'Press Start 2P',monospace}
+
+/* ── Screen layout pieces ── */
+.scr{position:absolute;inset:0;display:flex;flex-direction:column}
+.scr-hidden{display:none!important}
+
+/* title screen */
+#scr-title{background:#9bbc0f;align-items:center;justify-content:center;gap:6px;padding:10px}
+.title-logo{font-size:9px;color:#0f380f;text-align:center;line-height:1.6;text-shadow:2px 2px 0 #306230}
+.title-sub{font-size:5px;color:#306230;letter-spacing:1px;text-align:center}
+.title-blink{font-size:5px;color:#0f380f;animation:gbBlink 1s step-end infinite}
+.title-factions{font-size:4px;color:#306230;text-align:center;line-height:2;margin-top:4px}
+
+/* setup screen */
+#scr-setup{background:#9bbc0f;padding:6px 8px;gap:4px}
+.scr-title-bar{font-size:6px;color:#0f380f;border-bottom:1px solid #306230;padding-bottom:3px;margin-bottom:4px;display:flex;justify-content:space-between}
+.setup-row{display:flex;justify-content:space-between;align-items:center;font-size:5px;color:#306230;padding:4px 5px;border-bottom:1px dashed #8bac0f;cursor:pointer;border-radius:2px}
+.setup-row.active{background:#0f380f;color:#9bbc0f}
+.setup-row.active .setup-val{color:#9bbc0f}
+.setup-val{color:#0f380f;font-size:5px}
+.setup-cursor{color:#0f380f;animation:gbBlink .6s step-end infinite}
+.setup-hint{font-size:4px;color:#306230;text-align:center;margin-top:6px;line-height:1.8}
+.setup-dice{display:flex;gap:3px;padding:3px 5px 4px;background:#8bac0f;border-bottom:1px dashed #8bac0f;min-height:18px;align-items:center}
+.setup-die{width:12px;height:12px;border:1px solid #306230;display:flex;align-items:center;justify-content:center;font-size:8px;color:#0f380f;background:#9bbc0f;border-radius:1px;font-family:'Press Start 2P',monospace;line-height:1}
+.setup-dice.active-dice .setup-die{background:#0f380f;color:#9bbc0f;border-color:#306230}
+
+/* game screen — split top/bottom */
+#scr-game{background:#9bbc0f;flex-direction:column}
+.gb-player-half{flex:1;min-height:0;display:flex;flex-direction:column;padding:4px 6px;position:relative;overflow:hidden}
+.gb-player-half.p2{flex-direction:column-reverse}
+.gb-p-name{font-size:6px;color:#0f380f;display:flex;justify-content:space-between;align-items:center;margin-bottom:1px}
+.gb-p-faction{font-size:4px;color:#306230}
+.gb-hp-bar{display:flex;align-items:center;gap:3px;margin:1px 0}
+.gb-hp-label{font-size:5px;color:#306230;white-space:nowrap}
+.gb-hp-track{flex:1;height:7px;border:1px solid #0f380f;display:flex;overflow:hidden}
+.gb-hp-seg{height:100%;background:#0f380f;transition:width .3s}
+.gb-hp-val{font-size:7px;color:#0f380f;min-width:26px;text-align:right;line-height:1}
+.gb-stats-row{display:flex;gap:4px;font-size:5px;color:#306230}
+.gb-stat{background:#8bac0f;border:1px solid #306230;padding:2px 4px;border-radius:1px}
+.gb-stat-epi{background:#8bac0f;border:1px solid #306230;padding:2px 4px;border-radius:1px;font-size:5px;letter-spacing:1px}
+.gb-stat span{color:#0f380f}
+.gb-falls{font-size:7px;color:#306230;letter-spacing:1px}
+.gb-dice-row{position:relative;flex:1;min-height:0;overflow:hidden;margin:2px 0}
+.gb-die{
+  width:24px;height:24px;border:2px solid #0f380f;border-radius:2px;
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;
+  background:#8bac0f;position:absolute;
+  transition:left .22s ease, top .22s ease;
+  transform-style:preserve-3d;
+}
+.gb-die[data-sym="gun"]{font-size:24px;font-weight:900;letter-spacing:-1px;padding-bottom:9px;line-height:1}
+.gb-die[data-sym="sickle"]{font-size:13px;font-weight:900;line-height:1;display:flex;align-items:center;justify-content:center;padding-bottom:2px}
+.gb-die[data-sym="equip"]{font-size:13px;font-weight:900;background:#306230;border-color:#9bbc0f}
+.gb-die.rolling{animation:gbShake .4s ease infinite}
+.gb-die.spinning{animation:gbSpin .22s linear}
+.gb-die.lit{background:#0f380f}
+.gb-die.landed{animation:gbLand .18s ease}
+@keyframes gbShake{0%,100%{transform:translate(0,0)}25%{transform:translate(-2px,1px)}75%{transform:translate(2px,-1px)}}
+@keyframes gbSpin{0%{transform:rotateZ(0deg)}100%{transform:rotateZ(360deg)}}
+@keyframes gbLand{0%{transform:scale(1.3) rotateX(0deg)}60%{transform:scale(0.9)}100%{transform:scale(1)}}
+.gb-queue-row{width:100%;background:#8bac0f;border:1px solid #306230;border-radius:1px;min-height:22px;overflow:hidden}
+.gb-na{font-size:4px;color:#306230}
+.gb-roll-ctr{font-size:5px;color:#306230;text-align:right}
+
+/* center divider */
+.gb-divider{
+  height:14px;background:#306230;border-top:1px solid #0f380f;border-bottom:1px solid #0f380f;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;
+}
+.gb-divider-text{font-size:4px;color:#8bac0f;letter-spacing:2px}
+.gb-active-arrow{position:absolute;font-size:6px;color:#9bbc0f;transition:left .2s}
+
+
+
+/* modal/popup screens */
+#scr-modal{background:rgba(15,56,15,0.92);align-items:center;justify-content:center;z-index:50}
+.gb-modal-box{background:#9bbc0f;border:3px solid #0f380f;padding:8px 10px;width:240px;font-size:5px;color:#0f380f}
+.gb-modal-title{font-size:6px;border-bottom:1px solid #0f380f;padding-bottom:3px;margin-bottom:5px;text-align:center}
+.gb-modal-row{display:flex;justify-content:space-between;padding:2px 0;font-size:4px;color:#306230;border-bottom:1px dashed #8bac0f}
+.gb-modal-row span{color:#0f380f}
+.gb-modal-hint{font-size:4px;color:#306230;text-align:center;margin-top:5px;animation:gbBlink .6s step-end infinite}
+.gb-modal-choice{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.gb-choice-opt{border:2px solid #0f380f;padding:3px 8px;font-size:5px;cursor:pointer;font-family:'Press Start 2P',monospace;background:#8bac0f;color:#0f380f}
+.gb-choice-opt.selected,.gb-choice-opt:hover{background:#0f380f;color:#9bbc0f}
+
+/* toast popup */
+#gb-toast{
+  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  background:#0f380f;border:2px solid #306230;padding:4px 10px;
+  font-size:4px;color:#9bbc0f;z-index:60;display:none;text-align:center;
+  animation:gbToastIn .15s ease;
+}
+#gb-toast .toast-hint{font-size:4px;color:#306230;animation:gbBlink .6s step-end infinite;margin-top:2px}
+@keyframes gbToastIn{from{opacity:0;transform:translateX(-50%) translateY(4px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* winner */
+#scr-winner{background:#8bac0f;align-items:center;justify-content:center;gap:8px;z-index:60}
+.gb-winner-title{font-size:8px;color:#0f380f;text-align:center;animation:gbBlink .4s step-end infinite}
+.gb-winner-name{font-size:6px;color:#0f380f;text-align:center}
+.gb-winner-sub{font-size:4px;color:#306230;text-align:center}
+
+@keyframes gbBlink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes gbShake{0%,100%{transform:translate(0,0)}25%{transform:translate(-2px,1px)}75%{transform:translate(2px,-1px)}}
+@keyframes gbPop{from{transform:scale(0.7);opacity:0}to{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+
+<div class="gb-shell">
+  <div class="gb-label"><span>PROPAGAN</span>-DICE</div>
+
+  <div class="gb-bezel">
+    <div class="gb-power-led" id="power-led"></div>
+    <div id="gb-screen">
+
+      <!-- TITLE -->
+      <div class="scr" id="scr-title" style="align-items:center;justify-content:flex-start;gap:3px;padding:6px 8px">
+        <div class="title-logo" style="margin-bottom:0;font-size:8px">PROPAGAN<br>DICE</div>
+        <canvas id="title-dice" width="256" height="120" style="width:256px;height:120px;image-rendering:pixelated;display:block;flex-shrink:0"></canvas>
+        <div style="display:flex;flex-direction:column;gap:3px;width:100%;padding:0 8px;flex-shrink:0">
+          <div id="tmenu-0" onclick="titleSelect(0)" style="font-size:5px;padding:3px 6px;cursor:pointer;border:1px solid #306230;text-align:center">&#x25B6; START GAME</div>
+          <div id="tmenu-1" onclick="titleSelect(1)" style="font-size:5px;padding:3px 6px;cursor:pointer;border:1px solid #306230;text-align:center">HOW TO PLAY</div>
+        </div>
+      </div>
+
+      <!-- SETUP -->
+      <div class="scr scr-hidden" id="scr-setup" style="padding:6px 8px;gap:0">
+        <div class="scr-title-bar"><span>PLAYER SELECT</span><span style="font-size:4px;color:#306230">TAP + A/B TO CHANGE</span></div>
+        <div class="setup-row" id="srow-0" onclick="setupTap(0)">
+          <span>P1 FACTION</span>
+          <span class="setup-val" id="s-p1-val">PARTY BOSS</span>
+        </div>
+        <div class="setup-dice" id="s-p1-dice"></div>
+        <div class="setup-row" id="srow-1" onclick="setupTap(1)">
+          <span>P2 FACTION</span>
+          <span class="setup-val" id="s-p2-val">INDUSTRY TITAN</span>
+        </div>
+        <div class="setup-dice" id="s-p2-dice"></div>
+        <div class="setup-row" id="srow-2" onclick="setupTap(2)" style="margin-top:4px">
+          <span>P1 MODE</span>
+          <span class="setup-val" id="s-m1-val">MANUAL</span>
+        </div>
+        <div class="setup-row" id="srow-3" onclick="setupTap(3)">
+          <span>P2 MODE</span>
+          <span class="setup-val" id="s-m2-val">AUTO</span>
+        </div>
+        <div class="setup-row" id="srow-4" onclick="startFromSetup()" style="margin-top:4px;background:#0f380f;color:#9bbc0f;justify-content:center;letter-spacing:2px">
+          ▶ BEGIN GAME
+        </div>
+        <div class="setup-hint" style="margin-top:3px">
+          ↑↓ SELECT &nbsp; ←→ or A/B CHANGE
+        </div>
+      </div>
+
+      <!-- GAME -->
+      <div class="scr scr-hidden" id="scr-game">
+        <!-- P1 top half -->
+        <div class="gb-player-half" id="gh-0">
+          <div class="gb-p-name">
+            <span id="gn-0">PARTY BOSS</span>
+            <span class="gb-falls" id="gf-0">▪▪▪</span>
+          </div>
+          <div class="gb-hp-bar">
+            <div class="gb-hp-label">GDP</div>
+            <div class="gb-hp-track"><div class="gb-hp-seg" id="ghp-0" style="width:100%"></div></div>
+            <div class="gb-hp-val" id="ghv-0">--</div>
+          </div>
+          <div class="gb-queue-row" id="gq-0"></div>
+          <div class="gb-dice-row" id="gdice-0">
+            <div class="gb-die" id="gdie-0-0">?</div>
+            <div class="gb-die" id="gdie-0-1">?</div>
+            <div class="gb-die" id="gdie-0-2">?</div>
+          </div>
+        </div>
+
+        <!-- Center rail -->
+        <div class="gb-divider" onclick="openLegend()" style="cursor:pointer">
+          <span class="gb-active-arrow" id="active-arrow" style="left:6px">▶</span>
+          <span class="gb-divider-text" id="div-vs">VS (?)</span>
+          <button id="btn-damage" onclick="event.stopPropagation();gbDamageNow()" style="display:none;position:absolute;right:6px;background:#0f380f;border:1px solid #306230;color:#9bbc0f;font-family:'Press Start 2P',monospace;font-size:4px;padding:2px 5px;cursor:pointer;border-radius:1px">▶ DMG</button>
+        </div>
+
+        <!-- P2 bottom half (flipped) -->
+        <div class="gb-player-half p2" id="gh-1">
+          <div class="gb-p-name">
+            <span id="gn-1">INDUSTRY TITAN</span>
+            <span class="gb-falls" id="gf-1">▪▪▪</span>
+          </div>
+          <div class="gb-hp-bar">
+            <div class="gb-hp-label">GDP</div>
+            <div class="gb-hp-track"><div class="gb-hp-seg" id="ghp-1" style="width:100%"></div></div>
+            <div class="gb-hp-val" id="ghv-1">--</div>
+          </div>
+          <div class="gb-queue-row" id="gq-1"></div>
+          <div class="gb-dice-row" id="gdice-1">
+            <div class="gb-die" id="gdie-1-0">?</div>
+            <div class="gb-die" id="gdie-1-1">?</div>
+            <div class="gb-die" id="gdie-1-2">?</div>
+          </div>
+        </div>
+
+        <!-- Ticker -->
+        <!-- Toast -->
+        <div id="gb-toast"></div>
+      </div>
+
+
+      <!-- RULES screen -->
+      <div class="scr scr-hidden" id="scr-rules" style="background:#9bbc0f;padding:5px 6px;display:flex;flex-direction:column;gap:2px;overflow-y:auto">
+        <div class="scr-title-bar" style="margin-bottom:2px"><span>HOW TO PLAY</span><span style="font-size:4px;color:#306230">A=BACK</span></div>
+
+        <div style="border:1px solid #306230;background:#8bac0f;padding:3px 4px">
+          <div style="background:#306230;color:#9bbc0f;font-size:4px;padding:1px 4px;letter-spacing:1px;margin-bottom:2px">GOAL</div>
+          <div style="font-size:4px;color:#0f380f;line-height:1.8">Reduce your opponent to 0 GDP 3 times. Each collapse = 1 fall. 3 falls = eliminated.</div>
+        </div>
+
+        <div style="border:1px solid #306230;background:#8bac0f;padding:3px 4px">
+          <div style="background:#306230;color:#9bbc0f;font-size:4px;padding:1px 4px;letter-spacing:1px;margin-bottom:2px">YOUR TURN</div>
+          <div style="font-size:4px;color:#0f380f;line-height:1.8">Roll 3 dice up to 4 times. Build a WAR queue to attack and a DEF queue to defend. Both players resolve damage after both turns.</div>
+        </div>
+
+        <div style="border:1px solid #306230;background:#8bac0f;padding:3px 4px">
+          <div style="background:#306230;color:#9bbc0f;font-size:4px;padding:1px 4px;letter-spacing:1px;margin-bottom:2px">ACTIVATION</div>
+          <div style="font-size:4px;color:#0f380f;line-height:1.8">
+            ⊕ (FIST) activates symbols.<br>
+            1 fist + 1 ATK = 1x WAR output.<br>
+            1 fist + 1 DEF = 1x DEF absorb.<br>
+            2 fists + 1 symbol = 2x activation.<br>
+            Alien @ is self-activating — no fist needed.
+          </div>
+        </div>
+
+        <div style="border:1px solid #306230;background:#8bac0f;padding:3px 4px">
+          <div style="background:#306230;color:#9bbc0f;font-size:4px;padding:1px 4px;letter-spacing:1px;margin-bottom:2px">COMBO BONUSES</div>
+          <div style="font-size:4px;color:#0f380f;line-height:1.8">
+            ATK ATK + = 1x WAR queued.<br>
+            ATK ATK (no x) = +2 WAR bonus!<br>
+            DEF DEF + = 1x DEF queued.<br>
+            DEF DEF (no x) = +2 DEF bonus!<br>
+            Triple same = +3 flat bonus token.
+          </div>
+        </div>
+
+        <div style="border:1px solid #306230;background:#8bac0f;padding:3px 4px">
+          <div style="background:#306230;color:#9bbc0f;font-size:4px;padding:1px 4px;letter-spacing:1px;margin-bottom:2px">DAMAGE</div>
+          <div style="font-size:4px;color:#0f380f;line-height:1.8">
+            Output = (WAR stat x attacks queued) + bonus.<br>
+            Absorbed = (DEF stat x defences queued) + bonus.<br>
+            GDP lost = Output - Absorbed.
+          </div>
+        </div>
+
+        <div style="border:1px solid #306230;background:#8bac0f;padding:3px 4px">
+          <div style="background:#0f380f;color:#9bbc0f;font-size:4px;padding:1px 4px;letter-spacing:1px;margin-bottom:2px">0 EPIDEMIC</div>
+          <div style="font-size:4px;color:#0f380f;line-height:1.8">2 epidemics in one turn ends it immediately. Feudal Lord and Alien Race carry more epidemic risk.</div>
+        </div>
+
+        <div style="font-size:4px;color:#306230;text-align:center;margin-top:2px">SELECT IN GAME = SYMBOL CHEAT SHEET</div>
+      </div>
+      <!-- LEGEND screen -->
+      <div class="scr scr-hidden" id="scr-legend" style="background:#9bbc0f;padding:5px 6px;display:flex;flex-direction:column;gap:3px">
+        <div class="scr-title-bar" style="margin-bottom:1px"><span>SYMBOL KEY</span><span style="font-size:4px;color:#306230">A=BACK</span></div>
+
+        <!-- Party Boss -->
+        <div style="border:1px solid #306230;background:#8bac0f">
+          <div style="background:#306230;color:#9bbc0f;font-size:4px;padding:1px 4px;letter-spacing:1px">PARTY BOSS</div>
+          <div style="display:flex;align-items:center;padding:2px 4px;gap:6px;border-bottom:1px solid #306230">
+            <span style="font-size:9px;font-weight:900;color:#0f380f;min-width:14px;text-align:center;line-height:1">T</span>
+            <span style="font-size:4px;color:#306230">HAMMER · ATK · NEEDS ⊕</span>
+          </div>
+          <div style="display:flex;align-items:center;padding:2px 4px;gap:6px">
+            <span style="font-size:9px;font-weight:900;color:#0f380f;min-width:14px;text-align:center;line-height:1">၎</span>
+            <span style="font-size:4px;color:#306230">SICKLE · DEF · NEEDS ⊕</span>
+          </div>
+        </div>
+
+        <!-- Industry Titan -->
+        <div style="border:1px solid #306230;background:#8bac0f">
+          <div style="background:#306230;color:#9bbc0f;font-size:4px;padding:1px 4px;letter-spacing:1px">INDUSTRY TITAN</div>
+          <div style="display:flex;align-items:center;padding:2px 4px;gap:6px;border-bottom:1px solid #306230">
+            <span style="font-size:9px;font-weight:900;color:#0f380f;min-width:14px;text-align:center;line-height:1">✈</span>
+            <span style="font-size:4px;color:#306230">PLANE · ATK · NEEDS ⊕</span>
+          </div>
+          <div style="display:flex;align-items:center;padding:2px 4px;gap:6px">
+            <span style="font-size:11px;font-weight:900;color:#0f380f;min-width:14px;text-align:center;line-height:1">⌐</span>
+            <span style="font-size:4px;color:#306230">GUN · DEF · NEEDS ⊕</span>
+          </div>
+        </div>
+
+        <!-- Feudal Lord -->
+        <div style="border:1px solid #306230;background:#8bac0f">
+          <div style="background:#306230;color:#9bbc0f;font-size:4px;padding:1px 4px;letter-spacing:1px">FEUDAL LORD</div>
+          <div style="display:flex;align-items:center;padding:2px 4px;gap:6px">
+            <span style="font-size:9px;font-weight:900;color:#0f380f;min-width:14px;text-align:center;line-height:1">t</span>
+            <span style="font-size:4px;color:#306230">SWORD · ATK · NEEDS ⊕ · NO DEF</span>
+          </div>
+        </div>
+
+        <!-- Alien Race -->
+        <div style="border:1px solid #306230;background:#8bac0f">
+          <div style="background:#306230;color:#9bbc0f;font-size:4px;padding:1px 4px;letter-spacing:1px">ALIEN RACE</div>
+          <div style="display:flex;align-items:center;padding:2px 4px;gap:6px">
+            <span style="font-size:9px;font-weight:900;color:#0f380f;min-width:14px;text-align:center;line-height:1">ႎ</span>
+            <span style="font-size:4px;color:#306230">HYBRID · CHOOSE WAR/DEF · SELF-ACTIVATES</span>
+          </div>
+        </div>
+
+        <!-- Shared -->
+        <div style="border:1px solid #306230;background:#8bac0f">
+          <div style="background:#0f380f;color:#9bbc0f;font-size:4px;padding:1px 4px;letter-spacing:1px">ALL FACTIONS</div>
+          <div style="display:flex;align-items:center;padding:2px 4px;gap:6px;border-bottom:1px solid #306230">
+            <span style="font-size:9px;color:#0f380f;min-width:14px;text-align:center;line-height:1">⊕</span>
+            <span style="font-size:4px;color:#306230">FIST · ACTIVATES ATK OR DEF</span>
+          </div>
+          <div style="display:flex;align-items:center;padding:2px 4px;gap:6px">
+            <span style="font-size:9px;font-weight:900;color:#0f380f;min-width:14px;text-align:center;line-height:1">0</span>
+            <span style="font-size:4px;color:#306230">EPIDEMIC · 2 ENDS YOUR TURN</span>
+          </div>
+        </div>
+
+        <div style="font-size:4px;color:#306230;text-align:center">TAP VS RAIL ANYTIME TO REOPEN</div>
+      </div>
+
+            <!-- MODAL (KO / choice) -->
+      <div class="scr scr-hidden" id="scr-modal">
+        <div class="gb-modal-box" id="gb-modal-box">
+          <div class="gb-modal-title" id="gb-modal-title">COLLAPSE!</div>
+          <div id="gb-modal-body"></div>
+          <div class="gb-modal-hint" id="gb-modal-hint">PRESS A TO CONTINUE</div>
+          <div class="gb-modal-choice scr-hidden" id="gb-modal-choice">
+            <div class="gb-choice-opt" id="gc-fire" onclick="G_CONFIRMING_QUIT ? gbA() : resolveChoice('fire')">WAR</div>
+            <div class="gb-choice-opt" id="gc-shield" onclick="G_CONFIRMING_QUIT ? gbB() : resolveChoice('shield')">DEF</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WINNER -->
+      <div class="scr scr-hidden" id="scr-winner">
+        <div class="gb-winner-title">GAME OVER</div>
+        <div style="font-size:16px">🏆</div>
+        <div class="gb-winner-name" id="gw-name">---</div>
+        <div class="gb-winner-sub" id="gw-sub">WINS!</div>
+        <div style="font-size:4px;color:#306230;margin-top:8px;animation:gbBlink .8s step-end infinite">START = PLAY AGAIN</div>
+      </div>
+
+    </div><!-- /gb-screen -->
+  </div><!-- /gb-bezel -->
+
+  <!-- Controls row -->
+  <div class="gb-dpad-wrap">
+    <!-- D-pad -->
+    <div>
+      <div class="gb-dpad">
+        <div class="gb-dpad-h"></div>
+        <div class="gb-dpad-v"></div>
+        <div class="gb-dpad-center"></div>
+        <div class="gb-dpad-btn up"    onclick="gbDpad('up')">▲</div>
+        <div class="gb-dpad-btn down"  onclick="gbDpad('down')">▼</div>
+        <div class="gb-dpad-btn left"  onclick="gbDpad('left')">◀</div>
+        <div class="gb-dpad-btn right" onclick="gbDpad('right')">▶</div>
+      </div>
+    </div>
+
+    <!-- Start/Select -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:18px;flex:1">
+      <div class="gb-mid">
+        <div>
+          <button class="gb-sys-btn" id="btn-select" onclick="gbSelect()">SELECT</button>
+          <div class="gb-sys-label">SELECT</div>
+        </div>
+        <div>
+          <button class="gb-sys-btn" id="btn-start" onclick="gbStart()">START</button>
+          <div class="gb-sys-label">START</div>
+        </div>
+      </div>
+      <div style="font-size:4px;color:#5a5e6c;text-align:center;font-family:'Press Start 2P',monospace;line-height:2">
+        A=ROLL/CONFIRM<br>B=CHANGE/BACK
+      </div>
+    </div>
+
+    <!-- A/B buttons -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div class="gb-ab">
+        <div style="display:flex;flex-direction:column;align-items:center">
+          <button class="gb-btn gb-btn-b" id="btn-b" onclick="gbB()"></button>
+          <div class="gb-btn-label">B</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center">
+          <button class="gb-btn gb-btn-a" id="btn-a" onclick="gbA()"></button>
+          <div class="gb-btn-label">A</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Speaker -->
+    <div class="gb-speaker" style="align-self:flex-end;margin-bottom:6px">
+      <div class="gb-speaker-dot"></div><div class="gb-speaker-dot"></div><div class="gb-speaker-dot"></div>
+      <div class="gb-speaker-dot"></div><div class="gb-speaker-dot"></div><div class="gb-speaker-dot"></div>
+      <div class="gb-speaker-dot"></div><div class="gb-speaker-dot"></div><div class="gb-speaker-dot"></div>
+      <div class="gb-speaker-dot"></div><div class="gb-speaker-dot"></div><div class="gb-speaker-dot"></div>
+    </div>
+  </div>
+
+</div><!-- /gb-shell -->
+
+<div style="font-size:7px;font-family:'Press Start 2P',monospace;color:#2a2e3c;margin-top:12px;text-align:center;line-height:2">
+  KEYBOARD: ENTER=START/A &nbsp; SHIFT=SELECT &nbsp; SPACE=B<br>
+  ↑↓ = D-PAD &nbsp; 1/2 = MANUAL ROLL P1/P2
+</div>
+
+<script>
+// ── Web Audio beeps ──────────────────────────────────────────
+var AC;
+function getAC(){if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();return AC;}
+function beep(freq,dur,vol,type){
+  try{
+    var ac=getAC(),o=ac.createOscillator(),g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.type=type||'square';o.frequency.value=freq;
+    g.gain.setValueAtTime(vol||0.15,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+dur);
+    o.start();o.stop(ac.currentTime+dur);
+  }catch(e){}
+}
+function sfxRoll(){beep(440,.05,.1);setTimeout(function(){beep(550,.05,.1)},60);}
+function sfxHit(){beep(200,.12,.18,'sawtooth');}
+function sfxBlock(){beep(660,.08,.1);}
+function sfxBtn(){beep(880,.04,.08);}
+function sfxBad(){beep(120,.1,.12,'sawtooth');}
+
+// ── KO sting — dramatic descending minor, ~2.5s ───────────────
+function sfxKO(){
+  musStop();
+  MUS.current='ko';
+  var ac=getAC();
+  var master=ac.createGain(); master.gain.value=0.18; master.connect(ac.destination);
+  MUS.nodes.push(master);
+  var now=ac.currentTime+0.05;
+  var b=0.13; // fast tempo for drama
+
+  // Descending minor phrase: Am G F E — square lead
+  var lead=[
+    [440,2],[392,1],[349,1],[330,2],[294,1],[262,1],[247,3],
+    [220,2],[196,2],[175,2],[165,4]
+  ];
+  var t=now;
+  lead.forEach(function(n){
+    musNote(ac,master,n[0],t,n[1]*b,0.16,'square');
+    t+=n[1]*b;
+  });
+
+  // Parallel bass octave down — sawtooth
+  t=now;
+  lead.forEach(function(n){
+    musNote(ac,master,n[0]/2,t,n[1]*b,0.12,'sawtooth');
+    t+=n[1]*b;
+  });
+
+  // Staccato snare hits on each beat
+  for(var i=0;i<8;i++) musSnare(ac,master,now+i*b*2);
+
+  // Kick on 1
+  musKick(ac,master,now);
+  musKick(ac,master,now+b*4);
+
+  // Final low thud
+  (function(){
+    var o=ac.createOscillator(),g=ac.createGain();
+    o.type='sine'; o.frequency.setValueAtTime(80,t);
+    o.frequency.exponentialRampToValueAtTime(30,t+0.4);
+    g.gain.setValueAtTime(0.4,t);
+    g.gain.exponentialRampToValueAtTime(0.001,t+0.5);
+    o.connect(g);g.connect(master);
+    o.start(t);o.stop(t+0.6);
+    MUS.nodes.push(o,g);
+  })();
+}
+
+// ── Win fanfare — triumphant ascending major, ~4s ────────────
+function sfxWin(){
+  musStop();
+  MUS.current='win';
+  var ac=getAC();
+  var master=ac.createGain(); master.gain.value=0.18; master.connect(ac.destination);
+  MUS.nodes.push(master);
+  var now=ac.currentTime+0.05;
+  var b=0.1;
+
+  // Ascending fanfare: C major triads climbing
+  var fanfare=[
+    [262,2],[330,2],[392,2],[523,4],
+    [392,1],[440,1],[494,1],[523,1],[587,1],[659,1],
+    [784,6],
+    [659,1],[523,1],[659,1],[784,1],
+    [1047,8]
+  ];
+  var t=now;
+  fanfare.forEach(function(n){
+    musNote(ac,master,n[0],t,n[1]*b,0.18,'square');
+    t+=n[1]*b;
+  });
+
+  // Harmony a third up
+  t=now;
+  var harm=[
+    [330,2],[392,2],[494,2],[659,4],
+    [494,1],[523,1],[587,1],[659,1],[784,1],[880,1],
+    [1047,6],
+    [880,1],[659,1],[880,1],[1047,1],
+    [1319,8]
+  ];
+  harm.forEach(function(n){
+    musNote(ac,master,n[0],t,n[1]*b,0.1,'square');
+    t+=n[1]*b;
+  });
+
+  // Bass root notes
+  t=now;
+  [[131,4],[165,4],[196,4],[262,12],[131,4],[262,8]].forEach(function(n){
+    musNote(ac,master,n[0],t,n[1]*b,0.14,'triangle');
+    t+=n[1]*b;
+  });
+
+  // Kick on every beat of fanfare
+  for(var i=0;i<24;i+=2) musKick(ac,master,now+i*b);
+  // Snare on 2 and 4
+  for(var i=2;i<24;i+=4) musSnare(ac,master,now+i*b);
+
+  // Cymbal-like noise burst at the peak
+  musSnare(ac,master,now+b*20);
+  musSnare(ac,master,now+b*21);
+  musSnare(ac,master,now+b*22);
+}
+
+// ── Title dice animation ─────────────────────────────────────
+var titleDiceRAF = null;
+function startTitleDice(){
+  var cv=document.getElementById('title-dice');
+  if(!cv) return;
+  var ctx=cv.getContext('2d');
+  var W=256,H=120;
+  var TC={lightest:'#9bbc0f',light:'#8bac0f',mid:'#306230',dark:'#0f380f'};
+  var FIST='⊕', SICKLE='၎';
+
+  function clear(){ctx.fillStyle=TC.lightest;ctx.fillRect(0,0,W,H);}
+
+  function drawDie(cx,cy,s,syms){
+    var h=s*0.6,d=s*1.25;
+    var tL={x:cx-s,y:cy},tT={x:cx,y:cy-h},tR={x:cx+s,y:cy},tB={x:cx,y:cy+h};
+    var bL={x:cx-s,y:cy+d},bM={x:cx,y:cy+h+d},bR={x:cx+s,y:cy+d};
+
+    ctx.beginPath();ctx.moveTo(tR.x,tR.y);ctx.lineTo(tB.x,tB.y);
+    ctx.lineTo(bM.x,bM.y);ctx.lineTo(bR.x,bR.y);ctx.closePath();
+    ctx.fillStyle=TC.dark;ctx.fill();
+
+    ctx.beginPath();ctx.moveTo(tL.x,tL.y);ctx.lineTo(tB.x,tB.y);
+    ctx.lineTo(bM.x,bM.y);ctx.lineTo(bL.x,bL.y);ctx.closePath();
+    ctx.fillStyle=TC.mid;ctx.fill();
+
+    for(var i=0;i<8;i++){
+      var ti=i/8,x=tL.x+(tB.x-tL.x)*ti,y=tL.y+(tB.y-tL.y)*ti;
+      if(i%2===0){ctx.fillStyle=TC.light;ctx.fillRect(Math.round(x)+1,Math.round(y),2,2);}
+    }
+
+    ctx.beginPath();ctx.moveTo(tL.x,tL.y);ctx.lineTo(tT.x,tT.y);
+    ctx.lineTo(tR.x,tR.y);ctx.lineTo(tB.x,tB.y);ctx.closePath();
+    ctx.fillStyle=TC.light;ctx.fill();
+
+    for(var i=0;i<8;i++){
+      var ti=i/8,x=tL.x+(tT.x-tL.x)*ti,y=tL.y+(tT.y-tL.y)*ti;
+      if(i%2===0){ctx.fillStyle=TC.lightest;ctx.fillRect(Math.round(x),Math.round(y),2,2);}
+    }
+
+    ctx.strokeStyle=TC.dark;ctx.lineWidth=1.5;ctx.lineJoin='round';
+    [[tL,tT],[tT,tR],[tR,tB],[tB,tL],[tL,bL],[bL,bM],[bM,bR],[bR,tR],[tB,bM]].forEach(function(p){
+      ctx.beginPath();ctx.moveTo(p[0].x,p[0].y);ctx.lineTo(p[1].x,p[1].y);ctx.stroke();
+    });
+
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    var sz=Math.round(s*0.62),szS=Math.round(s*0.5);
+
+    var topCX=(tL.x+tT.x+tR.x+tB.x)/4, topCY=(tL.y+tT.y+tR.y+tB.y)/4;
+    ctx.font='bold '+sz+'px "Courier New",monospace';
+    ctx.fillStyle=TC.dark;
+    ctx.fillText(syms.top,topCX,topCY);
+
+    var lfCX=(tL.x+tB.x+bM.x+bL.x)/4, lfCY=(tL.y+tB.y+bM.y+bL.y)/4;
+    ctx.font='bold '+szS+'px "Courier New",monospace';
+    ctx.fillStyle=TC.lightest;
+    ctx.fillText(syms.left,lfCX,lfCY);
+
+    var rfCX=(tB.x+tR.x+bR.x+bM.x)/4, rfCY=(tB.y+tR.y+bR.y+bM.y)/4;
+    ctx.fillStyle=TC.mid;
+    ctx.fillText(syms.right,rfCX,rfCY);
+  }
+
+  function drawShadow(cx,cy,s){
+    ctx.beginPath();
+    ctx.ellipse(cx,cy+s*0.6+s*1.25+6,s*0.8,s*0.16,0,0,Math.PI*2);
+    ctx.fillStyle='rgba(15,56,15,0.25)';ctx.fill();
+  }
+
+  function drawScanlines(){
+    for(var y=0;y<H;y+=2){ctx.fillStyle='rgba(15,56,15,0.07)';ctx.fillRect(0,y,W,1);}
+  }
+
+  var t=0;
+  var phases=[0,Math.PI*0.65,Math.PI*1.3],amp=4;
+  var dice=[
+    {cx:48, cy:54,s:18,syms:{top:'T',   left:'0',    right:FIST  }},
+    {cx:128,cy:44,s:27,syms:{top:SICKLE,left:'T',    right:'0'   }},
+    {cx:204,cy:48,s:22,syms:{top:FIST,  left:SICKLE, right:'T'   }},
+  ];
+
+  function frame(){
+    t+=0.022; clear();
+    dice.forEach(function(d,i){drawShadow(d.cx,d.cy,d.s);});
+    [0,2,1].forEach(function(i){
+      var d=dice[i],dy=Math.sin(t+phases[i])*amp;
+      ctx.save();ctx.translate(0,dy);drawDie(d.cx,d.cy,d.s,d.syms);ctx.restore();
+    });
+    drawScanlines();
+    titleDiceRAF=requestAnimationFrame(frame);
+  }
+
+  if(titleDiceRAF) cancelAnimationFrame(titleDiceRAF);
+  frame();
+}
+
+function stopTitleDice(){
+  if(titleDiceRAF){cancelAnimationFrame(titleDiceRAF);titleDiceRAF=null;}
+}
+var MUS={nodes:[],loopTimer:null,current:null,vol:0.12};
+
+function musNote(ac,master,freq,start,dur,vol,type,slide){
+  var o=ac.createOscillator(), g=ac.createGain();
+  o.type=type||'square';
+  o.frequency.setValueAtTime(freq,start);
+  if(slide) o.frequency.exponentialRampToValueAtTime(slide,start+dur*0.8);
+  g.gain.setValueAtTime(0,start);
+  g.gain.linearRampToValueAtTime(vol,start+0.01);
+  g.gain.setValueAtTime(vol,start+dur*0.7);
+  g.gain.linearRampToValueAtTime(0,start+dur);
+  o.connect(g); g.connect(master);
+  o.start(start); o.stop(start+dur+0.05);
+  MUS.nodes.push(o,g);
+}
+
+function musKick(ac,master,start){
+  var o=ac.createOscillator(),g=ac.createGain();
+  o.type='sine';
+  o.frequency.setValueAtTime(180,start);
+  o.frequency.exponentialRampToValueAtTime(40,start+0.08);
+  g.gain.setValueAtTime(0.5,start);
+  g.gain.exponentialRampToValueAtTime(0.001,start+0.1);
+  o.connect(g);g.connect(master);
+  o.start(start);o.stop(start+0.12);
+  MUS.nodes.push(o,g);
+}
+
+function musSnare(ac,master,start){
+  var buf=ac.createBuffer(1,ac.sampleRate*0.08,ac.sampleRate);
+  var d=buf.getChannelData(0);
+  for(var i=0;i<d.length;i++) d[i]=(Math.random()*2-1);
+  var src=ac.createBufferSource(),g=ac.createGain(),f=ac.createBiquadFilter();
+  f.type='highpass';f.frequency.value=2000;
+  src.buffer=buf;
+  g.gain.setValueAtTime(0.18,start);
+  g.gain.exponentialRampToValueAtTime(0.001,start+0.08);
+  src.connect(f);f.connect(g);g.connect(master);
+  src.start(start);
+  MUS.nodes.push(src,g,f);
+}
+
+function musStop(){
+  if(MUS.loopTimer){clearTimeout(MUS.loopTimer);MUS.loopTimer=null;}
+  MUS.nodes.forEach(function(n){try{n.stop&&n.stop();n.disconnect&&n.disconnect();}catch(e){}});
+  MUS.nodes=[];
+  MUS.current=null;
+}
+
+// ── Title theme: bright bouncy arpeggio ~140bpm ──────────────
+function playTitle(){
+  musStop(); MUS.current='title';
+  var ac=getAC();
+  var master=ac.createGain(); master.gain.value=MUS.vol; master.connect(ac.destination);
+  MUS.nodes.push(master);
+
+  var beat=60/140; // ~0.429s per beat
+  var now=ac.currentTime+0.05;
+
+  // Melody — bright square wave arpeggio
+  // C major pentatonic: C5=523 E5=659 G5=784 A5=880 C6=1047
+  var mel=[523,659,784,880,1047,880,784,659, 523,659,784,880,1047,880,784,659,
+           659,784,880,1047,880,784,659,523,  784,880,1047,1047,880,784,659,523];
+  var mDur=beat*0.5;
+  mel.forEach(function(f,i){
+    musNote(ac,master,f,now+i*beat*0.5,mDur,0.18,'square');
+  });
+
+  // Bass pulse — every beat
+  var bass=[131,131,165,131, 131,131,165,175];
+  for(var i=0;i<16;i++){
+    musNote(ac,master,bass[i%8]*2,now+i*beat,beat*0.4,0.1,'triangle');
+  }
+
+  // Kick on 1 and 3
+  for(var i=0;i<16;i+=2) musKick(ac,master,now+i*beat);
+  // Snare on 2 and 4
+  for(var i=1;i<16;i+=2) musSnare(ac,master,now+i*beat);
+
+  var loopLen=16*beat*1000;
+  MUS.loopTimer=setTimeout(function(){if(MUS.current==='title')playTitle();},loopLen-80);
+}
+
+// ── Game theme: driving, rhythmic, punchier ~160bpm ──────────
+function playGame(){
+  musStop(); MUS.current='game';
+  var ac=getAC();
+  var master=ac.createGain(); master.gain.value=MUS.vol; master.connect(ac.destination);
+  MUS.nodes.push(master);
+
+  var beat=60/160; // ~0.375s per beat
+  var now=ac.currentTime+0.05;
+
+  // Driving bass line — sawtooth
+  var bassLine=[110,110,138,110, 110,138,110,146, 110,110,138,110, 123,138,110,110];
+  for(var i=0;i<16;i++){
+    musNote(ac,master,bassLine[i],now+i*beat,beat*0.35,0.14,'sawtooth');
+  }
+
+  // Counter melody — higher square
+  var mel2=[440,0,440,494,0,440,392,0, 440,0,494,523,0,494,440,0];
+  for(var i=0;i<16;i++){
+    if(mel2[i]>0) musNote(ac,master,mel2[i],now+i*beat,beat*0.45,0.1,'square');
+  }
+
+  // High arpeggio fills — eighth notes in bars 3-4
+  var fills=[880,784,659,784,880,784,659,523];
+  fills.forEach(function(f,i){
+    musNote(ac,master,f,now+(8+i)*beat,beat*0.3,0.07,'square');
+  });
+
+  // Kick pattern: 1 e+a 3 e+a (four-on-the-floor with extra kicks)
+  [0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5].forEach(function(b){
+    if(b%2<0.6) musKick(ac,master,now+b*beat);
+  });
+  // Snare 2+4
+  for(var i=1;i<8;i+=2) musSnare(ac,master,now+i*beat);
+  // Extra snare accent
+  musSnare(ac,master,now+6.5*beat);
+
+  var loopLen=16*beat*1000;
+  MUS.loopTimer=setTimeout(function(){if(MUS.current==='game')playGame();},loopLen-80);
+}
+
+function musResume(){try{if(AC&&AC.state==='suspended')AC.resume();}catch(e){}}
+
+// ── Screen manager ───────────────────────────────────────────
+var SCREENS = ['scr-title','scr-setup','scr-game','scr-modal','scr-winner','scr-legend','scr-rules'];
+// ── Game constants ───────────────────────────────────────────
+var MAX_ROLL=4, NA_LIM=2, MAX_KO=3, MAX_ACT=3;
+var LIFE_F=[8,10,12,14,16], ATK_F=[2,3,4,5,6,7], SHD_F=[2,4,6,8,10,12];
+
+// GB symbol key:
+// T = hammer  ၎ = sickle  ✈ = plane  ⌐ = gun
+// ⊕ = fist/equip  0 = epidemic  t = sword  ႎ = alien hybrid
+var SYM_KEY={
+  hammer:'T', sickle:'c', plane:'^', gun:'#',
+  fist:'+', epidemic:'0', sword:'t', hybrid:'@'
+};
+var FACTIONS={
+  proletariat:{name:'PARTY BOSS',  fireIco:'T', shieldIco:'\u104E', fireName:'HAMMER',shieldName:'SICKLE',hybridChoice:false,
+    sym:[{label:'Hammer',e:'T'},{label:'Hammer',e:'T'},{label:'Sickle',e:'\u104E'},{label:'Sickle',e:'\u104E'},{label:'Equip',e:'⊕'},{label:'Do Nothing',e:'0'}]},
+  capitalist: {name:'INDUSTRY TITAN',fireIco:'✈', shieldIco:'\u2310', fireName:'PLANE', shieldName:'GUN',  hybridChoice:false,
+    sym:[{label:'Hammer',e:'✈'},{label:'Hammer',e:'✈'},{label:'Sickle',e:'\u2310'},{label:'Sickle',e:'\u2310'},{label:'Equip',e:'⊕'},{label:'Do Nothing',e:'0'}]},
+  feudal:     {name:'FEUDAL LORD',  fireIco:'t', shieldIco:null,  fireName:'SWORD', shieldName:null,   hybridChoice:false,
+    sym:[{label:'Hammer',e:'t'},{label:'Hammer',e:'t'},{label:'Equip',e:'⊕'},{label:'Equip',e:'⊕'},{label:'Do Nothing',e:'0'},{label:'Do Nothing',e:'0'}]},
+  alien:      {name:'ALIEN RACE',   fireIco:'\u108E', shieldIco:'\u108E',  fireName:'BEAM',  shieldName:'FIELD',hybridChoice:true,
+    sym:[{label:'Hybrid',e:'\u108E'},{label:'Hybrid',e:'\u108E'},{label:'Hybrid',e:'\u108E'},{label:'Do Nothing',e:'0'},{label:'Do Nothing',e:'0'},{label:'Do Nothing',e:'0'}]}
+};
+var FKEYS=['proletariat','capitalist','feudal','alien'];
+var FNAMES=FKEYS.map(function(k){return FACTIONS[k].name;});
+
+// ── Setup state ──────────────────────────────────────────────
+var titleCursor=0; // 0=START GAME, 1=HOW TO PLAY
+
+var setup={
+  factions:[0,1],  // indices into FKEYS
+  modes:[true,false], // true=manual
+  row:0  // 0=p1fac,1=p2fac,2=p1mode,3=p2mode
+};
+
+// ── Game state ───────────────────────────────────────────────
+var G={players:[],round:0,speed:300,paused:false,running:false,resume:null,ticker:[],waitingManual:false,waitingDamage:false,waitingAck:false};
+
+function rnd(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function rndSym(pid){var s=FACTIONS[FKEYS[setup.factions[pid]]].sym;return s[Math.floor(Math.random()*s.length)];}
+function getFac(pid){return FACTIONS[FKEYS[setup.factions[pid]]];}
+function makeP(id){var f=getFac(id);return{id:id,name:f.name,life:0,maxLife:0,atk:0,shd:0,kos:0,qF:0,qS:0,bF:0,bS:0,noAct:0};}
+function rollStats(){return{life:rnd(LIFE_F),atk:rnd(ATK_F),shd:rnd(SHD_F)};}
+
+// ── Ticker ───────────────────────────────────────────────────
+var tickerMsgs=[];
+function tick(msg){tickerMsgs.push(msg);}
+
+// ── Toast ────────────────────────────────────────────────────
+var toastTimer=null;
+function gbToast(msg){
+  var el=document.getElementById('gb-toast');
+  el.innerHTML=msg.replace('\n','<br>');
+  el.style.display='block';
+  el.style.animation='none';
+  void el.offsetWidth;
+  el.style.animation='gbToastIn .15s ease';
+  if(toastTimer){clearTimeout(toastTimer);toastTimer=null;}
+}
+function gbToastClear(){
+  var el=document.getElementById('gb-toast');
+  if(el) el.style.display='none';
+}
+
+// ── Update display ────────────────────────────────────────────
+function updDisplay(pid){
+  var p=G.players[pid];
+  if(!p) return;
+  var f=getFac(pid);
+  document.getElementById('gn-'+pid).textContent=p.name;
+  // HP bar
+  var pct=p.maxLife>0?Math.max(0,p.life/p.maxLife*100):100;
+  document.getElementById('ghp-'+pid).style.width=pct+'%';
+  document.getElementById('ghv-'+pid).textContent=Math.max(0,p.life)+'/'+p.maxLife;
+  // Stats (now shown inside queue box — no standalone chips)
+  // Falls
+  var falls='';
+  for(var i=0;i<MAX_KO;i++) falls+=(i<p.kos?'\u25A0':'\u25A1');
+  document.getElementById('gf-'+pid).textContent=falls;
+  // Queue
+  var qEl=document.getElementById('gq-'+pid);
+  var fac=getFac(pid);
+  var fIco=fac.fireIco||'?', sIco=fac.shieldIco||'?';
+  var warStat='<span style="font-size:3px;color:#306230">('+p.atk+'ea)</span>';
+  var defStat='<span style="font-size:3px;color:#306230">('+p.shd+'ea)</span>';
+  var warLabel='WAR·'+p.atk;
+  var defLabel='DEF·'+(p.shd||'-');
+  var warBonus = p.bF>0 ? ' <span style="font-size:5px">+'+p.bF+'</span>' : '';
+  var defBonus = p.bS>0 ? ' <span style="font-size:5px">+'+p.bS+'</span>' : '';
+  var gunWrap = function(ico){ return ico==='\u2310' ? '<span style="font-size:11px;font-weight:900;position:relative;top:-2px">'+ico+'</span>' : '<span style="vertical-align:middle">'+ico+'</span>'; };
+  var warQueue = p.qF>0
+    ? gunWrap(fIco)+'<span style="font-size:6px">×'+p.qF+'</span>'+warBonus
+    : (p.bF>0 ? '<span style="font-size:6px">+'+p.bF+'W</span>' : '<span style="color:#306230;font-size:6px">--</span>');
+  var defQueue = p.qS>0
+    ? gunWrap(sIco)+'<span style="font-size:6px">×'+p.qS+'</span>'+defBonus
+    : (p.bS>0 ? '<span style="font-size:6px">+'+p.bS+'D</span>' : '<span style="color:#306230;font-size:6px">--</span>');
+  var naEl=document.getElementById('gna-'+pid);
+  var naPips=''; for(var n=0;n<NA_LIM;n++) naPips+=(n<p.noAct?'\u25A0':'\u25A1');
+  var rcEl=document.getElementById('grc-'+pid);
+  qEl.innerHTML=
+    '<div style="display:flex;gap:0;width:100%">'+
+      '<div style="flex:1;border-right:1px solid #306230;padding:2px 3px;min-width:0">'+
+        '<div style="font-size:3px;color:#306230;letter-spacing:1px">WAR·'+p.atk+'</div>'+
+        '<div style="font-size:8px;color:#0f380f;line-height:1">'+warQueue+'</div>'+
+      '</div>'+
+      '<div style="flex:1;border-right:1px solid #306230;padding:2px 3px;min-width:0">'+
+        '<div style="font-size:3px;color:#306230;letter-spacing:1px">DEF·'+(p.shd||'-')+'</div>'+
+        '<div style="font-size:8px;color:#0f380f;line-height:1">'+defQueue+'</div>'+
+      '</div>'+
+      '<div style="padding:2px 3px;min-width:0;text-align:right">'+
+        '<div id="grc-'+pid+'" style="font-size:3px;color:#306230;white-space:nowrap">'+(rcEl?rcEl.textContent:'R-/4')+'</div>'+
+        '<div id="gna-'+pid+'" style="font-size:5px;color:#0f380f;letter-spacing:1px">'+naPips+'</div>'+
+      '</div>'+
+    '</div>';
+
+}
+
+// Place 3 dice with guaranteed no-overlap within the tray
+function placeDice(pid){
+  var tray = document.getElementById('gdice-'+pid);
+  var w = tray ? tray.offsetWidth  : 120;
+  var h = tray ? tray.offsetHeight : 50;
+  var dieW = 26, dieH = 26, pad = 4;
+  var colW = Math.floor(w / 3);
+  var positions = [];
+  for(var i=0;i<3;i++){
+    var xMin = i*colW + pad;
+    var xMax = Math.max(xMin+1, (i+1)*colW - dieW - pad);
+    var yMin = pad;
+    var yMax = Math.max(yMin+1, h - dieH - pad);
+    var x = xMin + Math.floor(Math.random()*(xMax-xMin));
+    var y = yMin + Math.floor(Math.random()*(yMax-yMin));
+    positions.push({left:x, top:y});
+  }
+  positions.sort(function(){return Math.random()-0.5;});
+  return positions;
+}
+
+var dieSeeds = [[0,0,0],[0,0,0]];
+
+function symAttr(e){
+  if(e==='\u2310') return 'gun';
+  if(e==='\u104E') return 'sickle';
+  if(e==='\u270A') return 'equip';
+  return '';
+}
+
+function showDice(pid, dice, rolling){
+  for(var i=0;i<3;i++){
+    var el=document.getElementById('gdie-'+pid+'-'+i);
+    if(rolling){
+      el.textContent='?'; el.removeAttribute('data-sym');
+      el.classList.add('rolling'); el.classList.remove('landed');
+      el.style.display='flex';
+    } else if(dice && dice[i]){
+      el.textContent=dice[i].e;
+      el.setAttribute('data-sym', symAttr(dice[i].e));
+      el.classList.remove('rolling'); el.classList.add('landed');
+      el.style.display='flex';
+    } else {
+      el.style.display='none'; el.classList.remove('rolling','landed');
+      el.removeAttribute('data-sym');
+    }
+  }
+}
+
+async function showDiceStagger(pid, dice){
+  var tray = document.getElementById('gdice-'+pid);
+  var w = tray ? tray.offsetWidth  : 120;
+  var h = tray ? tray.offsetHeight : 50;
+  var dieW = 26, dieH = 26;
+
+  // ── Phase 1: gather all 3 dice to center, clustered tightly ──
+  var cx = Math.floor(w/2 - dieW/2);
+  var cy = Math.floor(h/2 - dieH/2);
+  // Slight offset per die so they visibly stack/cluster
+  var offsets = [{x:-6,y:-4},{x:0,y:2},{x:6,y:-4}];
+  for(var i=0;i<3;i++){
+    var el=document.getElementById('gdie-'+pid+'-'+i);
+    el.style.transition='left .18s ease, top .18s ease';
+    el.style.left=(cx+offsets[i].x)+'px';
+    el.style.top =(cy+offsets[i].y)+'px';
+    el.textContent='?';
+    el.classList.remove('rolling','landed');
+    el.style.display='flex';
+  }
+  await wait(220);
+
+  // ── Phase 2: all shake together ──
+  for(var i=0;i<3;i++){
+    document.getElementById('gdie-'+pid+'-'+i).classList.add('rolling');
+  }
+  await wait(480);
+
+  // ── Phase 3: fly out one by one to random spots ──
+  var positions = placeDice(pid);
+  for(var i=0;i<3;i++){
+    var el=document.getElementById('gdie-'+pid+'-'+i);
+    el.classList.remove('rolling');
+    el.classList.add('spinning');
+    el.style.left=positions[i].left+'px';
+    el.style.top =positions[i].top+'px';
+    el.textContent=dice[i].e;
+    el.setAttribute('data-sym', symAttr(dice[i].e));
+    await wait(220);
+    // Land — stop spinning, pop
+    el.classList.remove('spinning');
+    el.classList.add('landed');
+    sfxRoll();
+    await wait(220);
+  }
+}
+
+function setActiveArrow(pid){
+  var arr=document.getElementById('active-arrow');
+  arr.style.left=(pid===0?'6px':'auto');
+  arr.style.right=(pid===1?'6px':'auto');
+  arr.textContent=pid===0?'▶':'◀';
+}
+
+// ── Wait helpers ─────────────────────────────────────────────
+function wait(ms){return new Promise(function(r){setTimeout(r,ms);});}
+function waitResume(){return new Promise(function(r){G.resume=function(v){G.resume=null;r(v);}});}
+
+// ── Modal ─────────────────────────────────────────────────────
+function showModal(title, rows, hint, withChoice){
+  document.getElementById('gb-modal-title').textContent=title;
+  var body=document.getElementById('gb-modal-body');
+  body.innerHTML='';
+  rows.forEach(function(r){
+    var d=document.createElement('div');
+    if(r.val===''||r.val===undefined){
+      // Section header row
+      d.style.cssText='font-size:4px;color:#306230;padding:3px 0 1px;border-bottom:1px solid #306230;margin-top:2px;letter-spacing:1px';
+      d.textContent=r.label;
+    } else {
+      d.className='gb-modal-row';
+      d.innerHTML='<span>'+r.label+'</span><span>'+r.val+'</span>';
+    }
+    body.appendChild(d);
+  });
+  document.getElementById('gb-modal-hint').textContent=hint||'PRESS A TO CONTINUE';
+  var ch=document.getElementById('gb-modal-choice');
+  ch.classList.toggle('scr-hidden',!withChoice);
+  if(withChoice){
+    var fac=getFac(G.choicePid||0);
+    document.getElementById('gc-fire').textContent=fac.fireName||'WAR';
+    document.getElementById('gc-shield').textContent=fac.shieldName||'DEF';
+  }
+  showScreen('scr-modal');
+}
+function hideModal(){showScreen('scr-game');}
+
+// ── Roll logic ────────────────────────────────────────────────
+async function doRoll(pid,rollNum){
+  var p=G.players[pid];
+  if(p.noAct>=NA_LIM) return;
+  var isManual=setup.modes[pid];
+  var fac=getFac(pid);
+
+  if(isManual){
+    // ── Phase 1: gather & shake, wait for A to release ──
+    var tray = document.getElementById('gdice-'+pid);
+    var w = tray ? tray.offsetWidth  : 120;
+    var h = tray ? tray.offsetHeight : 50;
+    var cx = Math.floor(w/2 - 12);
+    var cy = Math.floor(h/2 - 12);
+    var offsets = [{x:-6,y:-4},{x:0,y:2},{x:6,y:-4}];
+    for(var i=0;i<3;i++){
+      var el=document.getElementById('gdie-'+pid+'-'+i);
+      el.style.transition='left .18s ease, top .18s ease';
+      el.style.left=(cx+offsets[i].x)+'px';
+      el.style.top =(cy+offsets[i].y)+'px';
+      el.textContent='?';
+      el.classList.remove('landed','spinning');
+      el.classList.add('rolling');
+      el.style.display='flex';
+    }
+    G.waitingManual=true;
+    await waitResume();  // A → release dice
+    G.waitingManual=false;
+
+    // ── Phase 2: fly out and land ──
+    var dice=[rndSym(pid),rndSym(pid),rndSym(pid)];
+    var positions = placeDice(pid);
+    for(var i=0;i<3;i++){
+      var el=document.getElementById('gdie-'+pid+'-'+i);
+      el.classList.remove('rolling');
+      el.classList.add('spinning');
+      el.style.transition='left .22s ease, top .22s ease';
+      el.style.left=positions[i].left+'px';
+      el.style.top =positions[i].top+'px';
+      el.textContent=dice[i].e;
+      el.setAttribute('data-sym', symAttr(dice[i].e));
+      await wait(220);
+      el.classList.remove('spinning');
+      el.classList.add('landed');
+      sfxRoll();
+      await wait(200);
+    }
+
+    // Update roll counter
+    var rcEl=document.getElementById('grc-'+pid);
+    if(rcEl) rcEl.textContent='R '+rollNum+'/'+MAX_ROLL;
+
+    // ── Phase 3: dice stay visible, wait for A to proceed ──
+    G.waitingManual=true;
+    await waitResume();  // A → move on
+    G.waitingManual=false;
+
+    // Process results
+    var noA=0,eq=0,fi=0,sh=0,hy=0;
+    dice.forEach(function(d){
+      var l=d.label;
+      if(l==='Do Nothing')noA++;
+      else if(l==='Equip')eq++;
+      else if(l==='Hammer')fi++;
+      else if(l==='Sickle')sh++;
+      else if(l==='Hybrid')hy++;
+    });
+
+    // Epidemic check
+    if(noA>0){
+      p.noAct+=noA;
+      updDisplay(pid);
+      sfxBad();
+      tick(p.name+' EPIDEMIC x'+p.noAct);
+      if(p.noAct>=NA_LIM){tick(p.name+' TURN ENDS');return;}
+    }
+    // Hybrid
+    if(fac.hybridChoice&&hy>0){
+      for(var h=0;h<hy;h++){
+        G.choicePid=pid;G.choiceMode='hybrid';
+        var hFIco=fac.fireIco||'?', hSIco=fac.shieldIco||'?';
+        var hRows=[
+          {label:'HYBRID',val:(h+1)+'/'+hy},
+          {label:'QUEUED WAR',val:p.qF>0?(hFIco+'x'+p.qF):'NONE'},
+          {label:'QUEUED DEF',val:p.qS>0?(hSIco+'x'+p.qS):'NONE'},
+          {label:'ALLOCATE TO',val:'WAR OR DEF?'}
+        ];
+        showModal('HYBRID!',hRows,'',true);
+        var hc=await waitResume();
+        hideModal();
+        if(hc==='fire'){var a=Math.min(1,MAX_ACT-p.qF);p.qF+=a;}
+        else{var b=Math.min(1,MAX_ACT-p.qS);p.qS+=b;}
+      }
+      tick(p.name+' HYBRID x'+hy);
+      updDisplay(pid);return;
+    }
+    // Standard equip / conflict
+    if(eq>0){
+      var hasFi=fi>0,hasSh=sh>0,choice;
+      if(hasFi&&hasSh){
+        G.choicePid=pid;G.choiceMode='conflict';
+        var fIco=fac.fireIco||'?', sIco=fac.shieldIco||'?';
+        var qRows=[
+          {label:'QUEUED WAR',val:p.qF>0?(fIco+'x'+p.qF+'('+p.atk+'ea)'):'NONE'},
+          {label:'QUEUED DEF',val:p.qS>0?(sIco+'x'+p.qS+'('+p.shd+'ea)'):'NONE'},
+          {label:'EQUIPS',val:eq},{label:'CHOOSE',val:'WAR OR DEF?'}
+        ];
+        showModal('CONFLICT!',qRows,'',true);
+        choice=await waitResume();
+        hideModal();
+      } else if(hasFi){choice='fire';}
+      else if(hasSh){choice='shield';}
+      else{tick('NO SYMBOL - EQUIP WASTED');return;}
+      if(choice==='fire'){var add=Math.min(eq,MAX_ACT-p.qF);p.qF+=add;tick(p.name+' +'+add+' '+fac.fireName);}
+      else{var addS=Math.min(eq,MAX_ACT-p.qS);p.qS+=addS;tick(p.name+' +'+addS+' '+(fac.shieldName||'DEF'));}
+    } else if(fi===2&&sh===0&&hy===0){
+      p.bF+=2;tick(p.name+' DOUBLE ATK BONUS +2W');
+    } else if(sh===2&&fi===0&&hy===0){
+      p.bS+=2;tick(p.name+' DOUBLE DEF BONUS +2D');
+    } else if(fi===3){
+      p.bF+=3;tick(p.name+' TRIPLE ATK +3');
+    } else if(sh===3){
+      p.bS+=3;tick(p.name+' TRIPLE DEF +3');
+    } else {
+      tick('NO EQUIP');
+    }
+    updDisplay(pid);
+    return;  // manual path fully handled above
+
+  } else {
+    await wait(G.speed);
+  }
+
+  // ── Auto path ──
+  var dice=[rndSym(pid),rndSym(pid),rndSym(pid)];
+  await showDiceStagger(pid, dice);
+  var rcEl=document.getElementById('grc-'+pid);
+  if(rcEl) rcEl.textContent='R '+rollNum+'/'+MAX_ROLL;
+  await wait(50);
+
+  var noA=0,eq=0,fi=0,sh=0,hy=0;
+  dice.forEach(function(d){
+    var l=d.label;
+    if(l==='Do Nothing')noA++;
+    else if(l==='Equip')eq++;
+    else if(l==='Hammer')fi++;
+    else if(l==='Sickle')sh++;
+    else if(l==='Hybrid')hy++;
+  });
+
+  // Double ATK/DEF with no epidemic = +2 flat bonus
+  if(fi===2&&eq===0&&sh===0&&hy===0){p.bF+=2;tick(p.name+' DOUBLE ATK BONUS +2W');updDisplay(pid);return;}
+  if(sh===2&&eq===0&&fi===0&&hy===0){p.bS+=2;tick(p.name+' DOUBLE DEF BONUS +2D');updDisplay(pid);return;}
+
+  // Triple bonuses
+  if(fi===3){p.bF+=3;tick(p.name+' TRIPLE ATK +3 BONUS');updDisplay(pid);return;}
+  if(sh===3){p.bS+=3;tick(p.name+' TRIPLE DEF +3 BONUS');updDisplay(pid);return;}
+  if(eq===3){
+    var tc=fac.hybridChoice?'field':null;
+    if(!tc){
+      G.choicePid=pid;
+      var tFIco=fac.fireIco||'?', tSIco=fac.shieldIco||'?';
+      var tRows=[
+        {label:'TRIPLE FIST',  val:'+3 FLAT BONUS'},
+        {label:'QUEUED WAR',   val:p.qF>0?(tFIco+'x'+p.qF):'NONE'},
+        {label:'QUEUED DEF',   val:p.qS>0?(tSIco+'x'+p.qS):'NONE'},
+        {label:'BONUS TO',     val:'WAR OR DEF?'}
+      ];
+      showModal('TRIPLE FIST!',tRows,'A=WAR  B=DEF',false);
+      document.getElementById('gb-modal-hint').textContent='A=WAR  B=DEF';
+      G.choiceMode='triple';
+      var tv=await waitResume();
+      hideModal();
+      tc=tv;
+    } else {tc='fire';}
+    if(tc==='fire')p.bF+=3;else p.bS+=3;
+    tick(p.name+' TRIPLE FIST! +3 '+(tc==='fire'?'WAR':'DEF'));
+    updDisplay(pid);return;
+  }
+
+  // Epidemic
+  if(noA>0){
+    p.noAct+=noA;
+    updDisplay(pid);
+    sfxBad();
+    tick(p.name+' EPIDEMIC x'+p.noAct);
+    if(p.noAct>=NA_LIM){tick(p.name+' TURN ENDS');return;}
+  }
+
+  // Hybrid (Alien)
+  if(fac.hybridChoice&&hy>0){
+    for(var h=0;h<hy;h++){
+      var hc;
+      if(isManual){
+        G.choicePid=pid;G.choiceMode='hybrid';
+        var hFIco=fac.fireIco||'?', hSIco=fac.shieldIco||'?';
+        var hRows=[
+          {label:'HYBRID',      val:(h+1)+'/'+hy},
+          {label:'QUEUED WAR',  val:p.qF>0?(hFIco+'x'+p.qF):'NONE'},
+          {label:'QUEUED DEF',  val:p.qS>0?(hSIco+'x'+p.qS):'NONE'},
+          {label:'ALLOCATE TO', val:'WAR OR DEF?'}
+        ];
+        showModal('HYBRID!',hRows,'',true);
+        hc=await waitResume();
+        hideModal();
+      } else {
+        hc=G.smart?(p.maxLife>0&&p.life/p.maxLife<0.5?'shield':'fire'):(Math.random()<.5?'fire':'shield');
+      }
+      if(hc==='fire'){var a=Math.min(1,MAX_ACT-p.qF);p.qF+=a;}
+      else{var b=Math.min(1,MAX_ACT-p.qS);p.qS+=b;}
+    }
+    tick(p.name+' HYBRID x'+hy);
+    updDisplay(pid);return;
+  }
+
+  // Standard equip
+  if(eq>0){
+    var hasFi=fi>0,hasSh=sh>0;
+    var choice;
+    if(hasFi&&hasSh){
+      if(isManual){
+        G.choicePid=pid;G.choiceMode='conflict';
+        var fIco=fac.fireIco||'?', sIco=fac.shieldIco||'?';
+        var qRows=[
+          {label:'QUEUED WAR',  val:p.qF>0?(fIco+'x'+p.qF+'('+p.atk+'ea)'):'NONE'},
+          {label:'QUEUED DEF',  val:p.qS>0?(sIco+'x'+p.qS+'('+p.shd+'ea)'):'NONE'},
+          {label:'EQUIPS',      val:eq},
+          {label:'CHOOSE',      val:'WAR OR DEF?'}
+        ];
+        showModal('CONFLICT!',qRows,'',true);
+        choice=await waitResume();
+        hideModal();
+      } else {
+        choice=G.smart?(p.maxLife>0&&p.life/p.maxLife<0.5?'shield':'fire'):(Math.random()<.5?'fire':'shield');
+      }
+    } else if(hasFi){choice='fire';}
+    else if(hasSh){choice='shield';}
+    else{tick('NO SYMBOL - EQUIP WASTED');return;}
+
+    if(choice==='fire'){var add=Math.min(eq,MAX_ACT-p.qF);p.qF+=add;tick(p.name+' +'+add+' '+getFac(pid).fireName);}
+    else{var addS=Math.min(eq,MAX_ACT-p.qS);p.qS+=addS;tick(p.name+' +'+addS+' '+(getFac(pid).shieldName||'DEF'));}
+  } else {
+    tick('NO EQUIP');
+  }
+  updDisplay(pid);
+}
+
+function showDmgBtn(show){
+  var btn=document.getElementById('btn-damage');
+  var vs=document.getElementById('div-vs');
+  if(btn){btn.style.display=show?'block':'none';}
+  if(vs){vs.style.display=show?'none':'block';}
+}
+
+async function doTurn(pid){
+  var p=G.players[pid];
+  p.qF=0;p.qS=0;p.bF=0;p.bS=0;p.noAct=0;
+  setActiveArrow(pid);
+  // Clear this player's dice at the START of their turn (persisted from last turn)
+  showDice(pid,null,false);
+  // For manual players, show dice shaking in center ready to roll
+  if(setup.modes[pid]){
+    var trayEl = document.getElementById('gdice-'+pid);
+    var tw = trayEl ? trayEl.offsetWidth : 120;
+    var th = trayEl ? trayEl.offsetHeight : 50;
+    var tcx = Math.floor(tw/2 - 12);
+    var tcy = Math.floor(th/2 - 12);
+    var toffs = [{x:-6,y:-4},{x:0,y:2},{x:6,y:-4}];
+    for(var ti=0;ti<3;ti++){
+      var tel=document.getElementById('gdie-'+pid+'-'+ti);
+      tel.style.transition='none';
+      tel.style.left=(tcx+toffs[ti].x)+'px';
+      tel.style.top =(tcy+toffs[ti].y)+'px';
+      tel.textContent='?';
+      tel.classList.remove('landed','spinning');
+      tel.classList.add('rolling');
+      tel.style.display='flex';
+    }
+  }
+  var rcEl=document.getElementById('grc-'+pid);
+  if(rcEl) rcEl.textContent='R 0/'+MAX_ROLL;
+  updDisplay(pid);
+  for(var r=0;r<MAX_ROLL;r++){
+    if(p.noAct>=NA_LIM) break;
+    await doRoll(pid,r+1);
+    if(p.noAct>=NA_LIM) break;
+  }
+  // Do NOT hide dice here — leave them showing until next turn starts
+  var rcElEnd=document.getElementById('grc-'+pid);
+  if(rcElEnd) rcElEnd.textContent='DONE';
+  return{pid:pid,qF:p.qF,qS:p.qS};
+}
+
+function gbDamageNow(){
+  sfxBtn();
+  if(G.waitingDamage&&G.resume){G.resume();}
+}
+
+function resolveFire(att,def){
+  var tot=att.qF*att.atk+att.bF;
+  if(tot===0){tick(att.name+' NO OUTPUT');return;}
+  var blk=Math.min(def.qS*def.shd+def.bS,tot);
+  var dmg=tot-blk;
+  if(blk>0)sfxBlock();
+  if(dmg>0){
+    sfxHit();
+    def.life-=dmg;
+    tick(att.name+' HIT '+dmg+' DMG > '+def.name);
+    gbToast(def.name.split(' ')[0]+' HIT! -'+dmg+' GDP\n<span class="toast-hint">[A] CONTINUE</span>');
+  } else {
+    tick('ALL BLOCKED!');
+    gbToast(def.name.split(' ')[0]+' BLOCKED! +'+blk+' DEF\n<span class="toast-hint">[A] CONTINUE</span>');
+  }
+  updDisplay(def.id);
+}
+
+async function doDamage(attT,defT){
+  await wait(150);
+  var att=G.players[attT.pid],def=G.players[defT.pid];
+  resolveFire(att,def);
+  if(def.life<=0){
+    gbToastClear();
+    sfxKO();
+    def.kos++;
+    var isFinal=def.kos>=MAX_KO;
+    var ns=isFinal?null:rollStats();
+    var rows=[
+      {label:'ATTACKER',val:att.name.split(' ')[0]},
+      {label:'OUTPUT',val:att.qF+'x'+att.atk+(att.bF?'+'+att.bF:'')},
+      {label:'DEFENDER',val:def.name.split(' ')[0]},
+      {label:'FALLS',val:def.kos+'/'+MAX_KO},
+    ];
+    if(ns) rows.push({label:'NEW GDP',val:ns.life},{label:'NEW WAR',val:ns.atk},{label:'NEW DEF',val:ns.shd});
+    showModal(isFinal?'ELIMINATED!':'COLLAPSE!',rows,isFinal?'PRESS A':'A = REGIME CHANGE');
+    await waitResume();
+    hideModal();
+    if(isFinal){return true;}
+    // Non-final KO — resume game music after sting
+    playGame();
+    def.life=ns.life;def.maxLife=ns.life;def.atk=ns.atk;def.shd=ns.shd;
+    def.qF=0;def.qS=0;def.bF=0;def.bS=0;def.noAct=0;
+    tick(def.name+' REGIME CHANGE!');
+    updDisplay(def.id);
+  } else {
+    // Non-KO: toast stays visible, wait for A press to acknowledge
+    if(setup.modes[0]||setup.modes[1]){
+      G.waitingAck=true;
+      await waitResume();
+      G.waitingAck=false;
+    }
+    gbToastClear();
+  }
+  return false;
+}
+
+async function runGame(){
+  if(G.running) return;
+  G.running=true;
+  G.smart=true;
+  G.round=0;
+  G.players=[makeP(0),makeP(1)];
+  showScreen('scr-game');
+  [0,1].forEach(function(i){
+    var s=rollStats();
+    G.players[i].life=s.life;G.players[i].maxLife=s.life;
+    G.players[i].atk=s.atk;G.players[i].shd=s.shd;
+    updDisplay(i);
+  });
+
+  function queueStr(p,f){
+    if(p.qF===0&&p.qS===0&&p.bF===0&&p.bS===0) return 'NOTHING';
+    var s='';
+    if(p.qF>0) s+=(f.fireIco||'?')+'x'+p.qF+'('+p.atk+'ea)';
+    if(p.bF>0) s+=(s?' ':'')+'WAR+'+p.bF;
+    if(p.qS>0) s+=(s?' ':'')+(f.shieldIco||'?')+'x'+p.qS+'('+p.shd+'ea)';
+    if(p.bS>0) s+=(s?' ':'')+'DEF+'+p.bS;
+    return s;
+  }
+
+  while(true){
+    G.round++;
+    tick('-- ROUND '+G.round+' --');
+    var t0=await doTurn(0);
+    var t1=await doTurn(1);
+    // After both turns, show summary and wait for player to confirm
+    if(setup.modes[0]||setup.modes[1]){
+      var p0=G.players[0],p1=G.players[1];
+      var f0=getFac(0),f1=getFac(1);
+      var rows=[
+        {label:'RND',val:G.round},
+        {label:'---P1 '+p0.name.split(' ')[0]+'---',val:''},
+        {label:'QUEUE',val:queueStr(p0,f0)},
+        {label:'OUTPUT',val:String(p0.qF*p0.atk+p0.bF)+(p0.bF>0?' (W+'+p0.bF+')':'')},
+        {label:'---P2 '+p1.name.split(' ')[0]+'---',val:''},
+        {label:'QUEUE',val:queueStr(p1,f1)},
+        {label:'OUTPUT',val:String(p1.qF*p1.atk+p1.bF)+(p1.bF>0?' (W+'+p1.bF+')':'')},
+      ];
+      showModal('DAMAGE STEP',rows,'A = RESOLVE DAMAGE');
+      showDmgBtn(true);
+      G.waitingDamage=true;
+      await waitResume();
+      G.waitingDamage=false;
+      showDmgBtn(false);
+      hideModal();
+    }
+    // P1 attacks P2
+    var done=await doDamage(t0,t1);
+    if(done){showWinner(G.players[0]);return;}
+    // P2 attacks P1
+    done=await doDamage(t1,t0);
+    if(done){showWinner(G.players[1]);return;}
+  }
+}
+
+function showWinner(w){
+  sfxWin();
+  musStop(); // sfxWin takes over the audio context directly
+  document.getElementById('gw-name').textContent=w.name;
+  document.getElementById('gw-sub').textContent='WINS! FALLS: '+w.kos+'/'+MAX_KO;
+  showScreen('scr-winner');
+  G.running=false;
+}
+
+// ── Button handlers ───────────────────────────────────────────
+// A = confirm / roll
+function gbDpad(dir){
+  sfxBtn();
+  var scr=getActiveScreen();
+  if(scr==='scr-title'){
+    if(dir==='up')  {titleCursor=Math.max(0,titleCursor-1);updateTitleMenu();}
+    if(dir==='down'){titleCursor=Math.min(1,titleCursor+1);updateTitleMenu();}
+  } else if(scr==='scr-setup'){
+    if(dir==='up')   {setup.row=Math.max(0,setup.row-1);updateSetupDisplay();}
+    if(dir==='down') {setup.row=Math.min(4,setup.row+1);updateSetupDisplay();}
+    if(dir==='left') {cycleSetup(-1);}
+    if(dir==='right'){cycleSetup(1);}
+  }
+}
+
+function openLegend(){sfxBtn();showScreen('scr-legend');}  // legend keeps current music
+
+function gbA(){
+  sfxBtn();
+  musResume();
+  if(!MUS.current) playTitle(); // first interaction — start music
+  var scr=getActiveScreen();
+  if(scr==='scr-title'){activateTitleMenu();return;}
+  if(scr==='scr-legend'){showScreen('scr-game');return;}
+  if(scr==='scr-rules'){showScreen('scr-title');return;}
+  if(scr==='scr-winner'){resetToTitle();return;}
+  if(scr==='scr-modal'){
+    if(G_CONFIRMING_QUIT){
+      G_CONFIRMING_QUIT=false;
+      musStop();
+      G.running=false; G.resume=null;
+      resetToTitle();
+      return;
+    }
+    if(G.resume){
+      if(G.choiceMode==='conflict'||G.choiceMode==='hybrid'||G.choiceMode==='triple'){
+        G.choiceMode=null;G.resume('fire');
+      } else {
+        G.resume();
+      }
+    }
+    return;
+  }
+  if(scr==='scr-setup'){
+    if(setup.row===4){startFromSetup();return;}
+    cycleSetup(1);
+    return;
+  }
+  if(scr==='scr-game'&&G.waitingDamage&&G.resume){G.resume();return;}
+  if(scr==='scr-game'&&G.waitingAck&&G.resume){G.resume();return;}
+  if(scr==='scr-game'&&G.waitingManual&&G.resume){G.resume();return;}
+}
+
+// B = change / alt
+// Screen history for back navigation
+var SCREEN_HISTORY = [];
+var G_CONFIRMING_QUIT = false;
+
+function showScreen(id){
+  SCREENS.forEach(function(s){
+    document.getElementById(s).classList.toggle('scr-hidden', s!==id);
+  });
+  // Music transitions
+  musResume();
+  if(id==='scr-title'||id==='scr-setup') { if(MUS.current!=='title') playTitle(); }
+  else if(id==='scr-game')               { if(MUS.current!=='game')  playGame(); stopTitleDice(); }
+  else if(id==='scr-winner')             { musStop(); }
+  if(id==='scr-title') { setTimeout(startTitleDice, 50); }
+  else if(id!=='scr-setup') { /* keep dice running on setup */ }
+  // legend and modal keep whatever is playing
+}
+
+function navTo(id){
+  var cur = getActiveScreen();
+  if(cur && cur !== id) SCREEN_HISTORY.push(cur);
+  showScreen(id);
+}
+
+function navBack(){
+  var prev = SCREEN_HISTORY.pop();
+  if(prev) showScreen(prev);
+}
+
+function showQuitConfirm(){
+  G_CONFIRMING_QUIT = true;
+  document.getElementById('gb-modal-title').textContent = 'QUIT?';
+  var body = document.getElementById('gb-modal-body');
+  body.innerHTML = '<div style="font-size:5px;color:#0f380f;text-align:center;padding:4px 0">RETURN TO TITLE?</div>';
+  document.getElementById('gb-modal-hint').textContent = '';
+  // Repurpose choice buttons as YES/NO
+  var ch = document.getElementById('gb-modal-choice');
+  ch.classList.remove('scr-hidden');
+  document.getElementById('gc-fire').textContent = 'A YES';
+  document.getElementById('gc-shield').textContent = 'B NO';
+  showScreen('scr-modal');
+}
+
+function gbB(){
+  sfxBtn();
+  var scr = getActiveScreen();
+  // In quit confirm modal — B = cancel
+  if(scr === 'scr-modal' && G_CONFIRMING_QUIT){
+    G_CONFIRMING_QUIT = false;
+    showScreen('scr-game');
+    return;
+  }
+  // In choice modal — B = pick shield/DEF
+  if(scr === 'scr-modal' && G.resume){
+    if(G.choiceMode==='conflict'||G.choiceMode==='hybrid'||G.choiceMode==='triple'){
+      G.choiceMode=null; G.resume('shield');
+    } else { G.resume(); }
+    return;
+  }
+  // In setup — cycle value backwards
+  if(scr === 'scr-setup'){cycleSetup(-1); return;}
+  // In legend/rules/winner — go back
+  if(scr === 'scr-legend'){showScreen('scr-game'); return;}
+  if(scr === 'scr-rules'){showScreen('scr-title'); return;}
+  if(scr === 'scr-winner'){resetToTitle(); return;}
+  // In title — nothing to go back to
+  if(scr === 'scr-title'){return;}
+  // In game — show quit confirm
+  if(scr === 'scr-game'){showQuitConfirm(); return;}
+}
+
+// Select = move to next row in setup
+function gbSelect(){
+  sfxBtn();
+  var scr=getActiveScreen();
+  if(scr==='scr-setup'){setup.row=(setup.row+1)%4;updateSetupDisplay();return;}
+  if(scr==='scr-legend'){showScreen('scr-game');return;}
+  if(scr==='scr-game'){openLegend();return;}  // SELECT always opens cheat sheet in game
+  if(scr==='scr-game'&&G.waitingDamage&&G.resume){G.resume();return;}
+  if(scr==='scr-game'&&G.waitingAck&&G.resume){G.resume();return;}
+  if(scr==='scr-game'&&G.waitingManual&&G.resume){G.resume();return;}
+}
+
+// Start = confirm
+function gbStart(){
+  sfxBtn();
+  var scr=getActiveScreen();
+  if(scr==='scr-title'){activateTitleMenu();return;}
+  if(scr==='scr-legend'){showScreen('scr-game');return;}
+  if(scr==='scr-rules'){showScreen('scr-title');return;}
+  if(scr==='scr-setup'){startFromSetup();return;}
+  if(scr==='scr-winner'){resetToTitle();return;}
+  if(scr==='scr-game'&&G.waitingDamage&&G.resume){G.resume();return;}
+  if(scr==='scr-game'&&G.waitingAck&&G.resume){G.resume();return;}
+  if(scr==='scr-game'&&G.waitingManual&&G.resume){G.resume();return;}
+}
+
+function getActiveScreen(){
+  for(var i=0;i<SCREENS.length;i++){
+    if(!document.getElementById(SCREENS[i]).classList.contains('scr-hidden')) return SCREENS[i];
+  }
+  return null;
+}
+
+// D-pad up/down for setup row selection
+document.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){gbA();}
+  else if(e.key===' '){e.preventDefault();gbB();}
+  else if(e.key==='Shift'){gbSelect();}
+  else if(e.key==='ArrowUp'){gbDpad('up');}
+  else if(e.key==='ArrowDown'){gbDpad('down');}
+  else if(e.key==='ArrowLeft'&&getActiveScreen()==='scr-setup'){gbDpad('left');}
+  else if(e.key==='ArrowRight'&&getActiveScreen()==='scr-setup'){gbDpad('right');}
+  else if(e.key==='1'&&getActiveScreen()==='scr-game'&&setup.modes[0]&&G.waitingManual){gbA();}
+  else if(e.key==='2'&&getActiveScreen()==='scr-game'&&setup.modes[1]&&G.waitingManual){gbA();}
+});
+
+function cycleSetup(dir){
+  if(setup.row===0){setup.factions[0]=(setup.factions[0]+FKEYS.length+dir)%FKEYS.length;}
+  else if(setup.row===1){setup.factions[1]=(setup.factions[1]+FKEYS.length+dir)%FKEYS.length;}
+  else if(setup.row===2){setup.modes[0]=!setup.modes[0];}
+  else if(setup.row===3){setup.modes[1]=!setup.modes[1];}
+  updateSetupDisplay();
+}
+
+function renderSetupDice(elId, factionIdx, isActive){
+  var el=document.getElementById(elId);
+  if(!el) return;
+  var sym=FACTIONS[FKEYS[factionIdx]].sym;
+  el.innerHTML='';
+  el.className='setup-dice'+(isActive?' active-dice':'');
+  sym.forEach(function(s){
+    var d=document.createElement('div');
+    d.className='setup-die';
+    d.textContent=s.e;
+    el.appendChild(d);
+  });
+}
+
+function updateSetupDisplay(){
+  document.getElementById('s-p1-val').textContent=FNAMES[setup.factions[0]];
+  document.getElementById('s-p2-val').textContent=FNAMES[setup.factions[1]];
+  document.getElementById('s-m1-val').textContent=setup.modes[0]?'MANUAL':'AUTO';
+  document.getElementById('s-m2-val').textContent=setup.modes[1]?'MANUAL':'AUTO';
+  var labels=['P1 FACTION','P2 FACTION','P1 MODE','P2 MODE'];
+  for(var i=0;i<4;i++){
+    var row=document.getElementById('srow-'+i);
+    if(!row) continue;
+    row.classList.toggle('active', i===setup.row);
+    row.querySelector('span').textContent=(i===setup.row?'\u25B6 ':'')+labels[i];
+  }
+  // BEGIN GAME row
+  var r4=document.getElementById('srow-4');
+  if(r4) r4.style.background=setup.row===4?'#306230':'#0f380f';
+  renderSetupDice('s-p1-dice', setup.factions[0], setup.row===0);
+  renderSetupDice('s-p2-dice', setup.factions[1], setup.row===1);
+}
+function setupTap(row){
+  sfxBtn();
+  if(row===4){startFromSetup();return;}
+  setup.row=row;
+  updateSetupDisplay();
+}
+
+function resolveChoice(which){
+  sfxBtn();
+  if(G.resume){var r=G.resume;G.choiceMode=null;G.resume=null;r(which);}
+}
+
+function startFromSetup(){
+  document.getElementById('power-led').classList.add('on');
+  runGame();
+}
+
+function resetToTitle(){
+  G.running=false;G.resume=null;
+  titleCursor=0;
+  showScreen('scr-title');
+  updateTitleMenu();
+  document.getElementById('power-led').classList.remove('on');
+}
+
+
+// Fit shell to screen height on mobile
+function fitShell(){
+  var shell=document.querySelector('.gb-shell');
+  if(!shell) return;
+  var availH=window.innerHeight - 24;
+  var availW=window.innerWidth - 24;
+  var shellH=shell.scrollHeight;
+  var shellW=shell.offsetWidth;
+  var scaleH=availH/shellH;
+  var scaleW=availW/shellW;
+  var scale=Math.min(scaleH,scaleW,1);
+  shell.style.transform=scale<1?'scale('+scale.toFixed(3)+')':'';
+  shell.style.marginTop=scale<1?'-'+Math.round(shellH*(1-scale)/2)+'px':'';
+}
+window.addEventListener('load',fitShell);
+window.addEventListener('resize',fitShell);
+
+function updateTitleMenu(){
+  var items=['tmenu-0','tmenu-1'];
+  items.forEach(function(id,i){
+    var el=document.getElementById(id);
+    if(!el) return;
+    var labels=['START GAME','HOW TO PLAY'];
+    var active=i===titleCursor;
+    el.style.background=active?'#0f380f':'#8bac0f';
+    el.style.color=active?'#9bbc0f':'#0f380f';
+    el.textContent=(active?'\u25B6 ':'')+labels[i];
+  });
+}
+
+function titleSelect(i){
+  sfxBtn();
+  titleCursor=i;
+  updateTitleMenu();
+}
+
+function activateTitleMenu(){
+  if(titleCursor===0){showScreen('scr-setup');updateSetupDisplay();}
+  else{showScreen('scr-rules');}
+}
+
+// Init
+showScreen('scr-title');
+updateSetupDisplay();
+updateTitleMenu();
+setTimeout(startTitleDice, 100);
+</script>
+</body>
+</html>
