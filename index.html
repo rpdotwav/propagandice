@@ -1226,6 +1226,12 @@ async function doRoll(pid,rollNum){
       else if(l==='Hybrid')hy++;
     });
 
+    // Double/triple bonus — awarded first, regardless of other symbols
+    if(fi>=3){p.bF+=3;tick(p.name+' TRIPLE ATK +3');}
+    else if(fi===2){p.bF+=2;tick(p.name+' DOUBLE ATK BONUS +2W');}
+    if(sh>=3){p.bS+=3;tick(p.name+' TRIPLE DEF +3');}
+    else if(sh===2){p.bS+=2;tick(p.name+' DOUBLE DEF BONUS +2D');}
+
     // Epidemic check
     if(noA>0){
       p.noAct+=noA;
@@ -1273,15 +1279,7 @@ async function doRoll(pid,rollNum){
       else{tick('NO SYMBOL - EQUIP WASTED');return;}
       if(choice==='fire'){var add=Math.min(eq,MAX_ACT-p.qF);p.qF+=add;tick(p.name+' +'+add+' '+fac.fireName);}
       else{var addS=Math.min(eq,MAX_ACT-p.qS);p.qS+=addS;tick(p.name+' +'+addS+' '+(fac.shieldName||'DEF'));}
-    } else if(fi===2&&sh===0&&hy===0){
-      p.bF+=2;tick(p.name+' DOUBLE ATK BONUS +2W');
-    } else if(sh===2&&fi===0&&hy===0){
-      p.bS+=2;tick(p.name+' DOUBLE DEF BONUS +2D');
-    } else if(fi===3){
-      p.bF+=3;tick(p.name+' TRIPLE ATK +3');
-    } else if(sh===3){
-      p.bS+=3;tick(p.name+' TRIPLE DEF +3');
-    } else {
+    } else if(fi===0&&sh===0&&hy===0){
       tick('NO EQUIP');
     }
     updDisplay(pid);
@@ -1308,13 +1306,12 @@ async function doRoll(pid,rollNum){
     else if(l==='Hybrid')hy++;
   });
 
-  // Double ATK/DEF with no epidemic = +2 flat bonus
-  if(fi===2&&eq===0&&sh===0&&hy===0){p.bF+=2;tick(p.name+' DOUBLE ATK BONUS +2W');updDisplay(pid);return;}
-  if(sh===2&&eq===0&&fi===0&&hy===0){p.bS+=2;tick(p.name+' DOUBLE DEF BONUS +2D');updDisplay(pid);return;}
+  // Double/triple bonus — awarded first, regardless of other symbols
+  if(fi>=3){p.bF+=3;tick(p.name+' TRIPLE ATK +3 BONUS');}
+  else if(fi===2){p.bF+=2;tick(p.name+' DOUBLE ATK BONUS +2W');}
+  if(sh>=3){p.bS+=3;tick(p.name+' TRIPLE DEF +3 BONUS');}
+  else if(sh===2){p.bS+=2;tick(p.name+' DOUBLE DEF BONUS +2D');}
 
-  // Triple bonuses
-  if(fi===3){p.bF+=3;tick(p.name+' TRIPLE ATK +3 BONUS');updDisplay(pid);return;}
-  if(sh===3){p.bS+=3;tick(p.name+' TRIPLE DEF +3 BONUS');updDisplay(pid);return;}
   if(eq===3){
     var tc=fac.hybridChoice?'field':null;
     if(!tc){
